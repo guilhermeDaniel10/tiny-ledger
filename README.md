@@ -55,6 +55,9 @@ The pros outweigh the integer ones.
 ### Transactions
 Transactions will be append only so they can be immutable and keep a clear transaction history.
 
+### Transaction Collection
+
+
 ## API
 
 | Method | Path            | Description                    | Success     |
