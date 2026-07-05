@@ -7,8 +7,8 @@ import jakarta.validation.constraints.Positive;
 import java.math.BigDecimal;
 
 public record AmountRequest(
-        @NotNull
-        @Positive
+        @NotNull(message = "amount is required")
+        @Positive(message = "amount must be positive")
         @Digits(integer = 19, fraction = 2)
         BigDecimal amount) {
 }

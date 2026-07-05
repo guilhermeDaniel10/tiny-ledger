@@ -25,31 +25,31 @@ Starts on http://localhost:8080.
 
 ## API
 
-| Method | Path             | Description               | Success     |
-|--------|------------------|---------------------------|-------------|
-| POST   | `/deposits`      | Record a deposit          | 201 Created |
-| POST   | `/withdrawals`   | Record a withdrawal       | 201 Created |
-| GET    | `/balance`       | Get the current balance   | 200 OK      |
-| GET    | `/transactions`  | List transaction history  | 200 OK      |
+| Method | Path            | Description              | Success     |
+|--------|-----------------|--------------------------|-------------|
+| POST   | `/deposits`     | Record a deposit         | 201 Created |
+| POST   | `/withdrawals`  | Record a withdrawal      | 201 Created |
+| GET    | `/balance`      | Get the current balance  | 200 OK      |
+| GET    | `/transactions` | List transaction history | 200 OK      |
 
 ## API Docs
 
 With the app running, the OpenAPI spec and Swagger UI are available at:
 
-| What         | URL                                            |
-|--------------|------------------------------------------------|
-| Swagger UI   | http://localhost:8080/swagger-ui.html          |
-| OpenAPI JSON | http://localhost:8080/v3/api-docs              |
-| OpenAPI YAML | http://localhost:8080/v3/api-docs.yaml         |
+| What         | URL                                    |
+|--------------|----------------------------------------|
+| Swagger UI   | http://localhost:8080/swagger-ui.html  |
+| OpenAPI JSON | http://localhost:8080/v3/api-docs      |
+| OpenAPI YAML | http://localhost:8080/v3/api-docs.yaml |
 
 ## Status Codes
 
-| Code | Meaning              | When it occurs                                                         |
-|------|----------------------|------------------------------------------------------------------------|
-| 200  | OK                   | Balance or history returned                                            |
-| 201  | Created              | Transaction successfully recorded                                      |
-| 400  | Bad Request          | Missing, negative amount, more than two decimal places or unknown type |
-| 422  | Unprocessable Entity | Withdrawal exceeds current balance                                     |
+| Code | Meaning               | When it occurs                                                         |
+|------|-----------------------|------------------------------------------------------------------------|
+| 200  | OK                    | Balance or history returned                                            |
+| 201  | Created               | Transaction successfully recorded                                      |
+| 400  | Bad Request           | Missing, negative amount, more than two decimal places or unknown type |
+| 422  | Unprocessable Content | Withdrawal exceeds current balance                                     |
 
 ## Assumptions
 
