@@ -11,13 +11,13 @@ public class InMemoryTransactionRepository implements TransactionRepository {
     private final CopyOnWriteArrayList<Transaction> transactions = new CopyOnWriteArrayList<>();
 
     @Override
-    public void addTransaction(Transaction transaction) {
+    public void saveTransaction(Transaction transaction) {
         transactions.add(transaction);
 
     }
 
     @Override
-    public List<Transaction> getAll() {
+    public List<Transaction> findAll() {
         return List.copyOf(transactions);
     }
 }

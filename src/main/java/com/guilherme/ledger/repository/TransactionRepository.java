@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface TransactionRepository {
 
-    void addTransaction(Transaction transaction);
+    void saveTransaction(Transaction transaction);
 
-    List<Transaction> getAll();
+    List<Transaction> findAll();
 }

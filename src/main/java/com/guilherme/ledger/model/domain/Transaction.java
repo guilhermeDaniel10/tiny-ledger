@@ -1,7 +1,16 @@
 package com.guilherme.ledger.model.domain;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.Instant;
+import java.util.UUID;
 
-public record Transaction(BigDecimal amount, TransactionType type, LocalDateTime date) {
+public record Transaction(UUID id,
+                          TransactionType type,
+                          BigDecimal amount,
+                          BigDecimal balanceAfter,
+                          Instant timestamp) {
+
+    public static Transaction create(TransactionType type, BigDecimal amount, BigDecimal balanceAfter) {
+        return new Transaction(UUID.randomUUID(), type, amount, balanceAfter, Instant.now());
+    }
 }
