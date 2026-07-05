@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.List;
 
+/**
+ * Applies deposits and withdrawals and gets the balance from the stored transactions.
+ */
 @Service
 public class LedgerService {
     private final TransactionRepository transactionRepository;
@@ -18,6 +21,9 @@ public class LedgerService {
         this.transactionRepository = transactionRepository;
     }
 
+    /**
+     * Records a deposit and returns the resulting transaction
+     */
     public synchronized Transaction recordDeposit(AmountRequest amountRequest) {
         BigDecimal balanceBeforeTransaction = getBalance();
         BigDecimal amountToDeposit = amountRequest.amount();
@@ -30,6 +36,9 @@ public class LedgerService {
         return transaction;
     }
 
+    /**
+     * Records a withdrawal, or throws if the amount is larger than the current balance
+     */
     public synchronized Transaction recordWithdrawal(AmountRequest amountRequest) {
         BigDecimal balanceBeforeTransaction = getBalance();
         BigDecimal amountToWithdrawal = amountRequest.amount();
@@ -48,6 +57,9 @@ public class LedgerService {
         return transaction;
     }
 
+    /**
+     * Computes the current balance from all recorded transactions
+     */
     public BigDecimal getBalance() {
         BigDecimal balance = BigDecimal.ZERO;
         for (Transaction transaction : transactionRepository.findAll()) {
@@ -59,6 +71,9 @@ public class LedgerService {
         return balance;
     }
 
+    /**
+     * Returns all transactions in insertion order
+     */
     public List<Transaction> getHistory() {
         return transactionRepository.findAll();
     }

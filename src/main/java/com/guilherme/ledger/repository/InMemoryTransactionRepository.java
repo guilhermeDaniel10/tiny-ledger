@@ -6,6 +6,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * In-memory transaction store with CopyOnWriteArrayList.
+ */
 @Repository
 public class InMemoryTransactionRepository implements TransactionRepository {
     private final CopyOnWriteArrayList<Transaction> transactions = new CopyOnWriteArrayList<>();
@@ -13,7 +16,6 @@ public class InMemoryTransactionRepository implements TransactionRepository {
     @Override
     public void saveTransaction(Transaction transaction) {
         transactions.add(transaction);
-
     }
 
     @Override

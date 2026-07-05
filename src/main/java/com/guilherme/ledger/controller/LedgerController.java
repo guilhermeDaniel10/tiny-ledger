@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * REST endpoints for recording money movements and reading the balance and history.
+ */
 @RestController()
 public class LedgerController {
     private static final String CURRENCY = "EUR";
@@ -24,23 +27,35 @@ public class LedgerController {
         this.ledgerService = ledgerService;
     }
 
+    /**
+     * Records a deposit.
+     */
     @PostMapping("/deposits")
     public ResponseEntity<Transaction> record(@Valid @RequestBody AmountRequest request) {
         Transaction transaction = ledgerService.recordDeposit(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(transaction);
     }
 
+    /**
+     * Records a withdrawal.
+     */
     @PostMapping("/withdrawals")
     public ResponseEntity<Transaction> withdrawal(@Valid @RequestBody AmountRequest request) {
         Transaction transaction = ledgerService.recordWithdrawal(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(transaction);
     }
 
+    /**
+     * Returns the current balance.
+     */
     @GetMapping("/balance")
     public BalanceResponse balance() {
         return new BalanceResponse(ledgerService.getBalance(), CURRENCY);
     }
 
+    /**
+     * Returns the full transaction history.
+     */
     @GetMapping("/transactions")
     public List<Transaction> history() {
         return ledgerService.getHistory();
